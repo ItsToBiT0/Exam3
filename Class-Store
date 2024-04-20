@@ -1,0 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ITCareer_OOP_Exam_1
+{
+    public class Store
+    {
+        private string name;
+        List<Car> ListOfCar = new List<Car>();
+
+        public Store(string name)
+        {
+            this.Name = name;
+            
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set 
+            {
+                name = value;
+                if (value.Length <5)
+                {
+                    throw new ArgumentException("Invalid store name!");
+
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (ListOfCar.Count >0)
+            {
+                foreach (var car in ListOfCar)
+                {
+                    sb.AppendLine($"Car number {car.Number} costs {car.Price}");
+                }
+                return sb.ToString();
+            }
+            return $"Store {name} has no available cars";
+        }
+
+
+        public void AddCar(Car car)
+        {
+            ListOfCar.Add(car);
+        }
+        public bool SellCar(Car car)
+        {
+            Car searchCar = ListOfCar.FirstOrDefault(x => x.Model == car.Model && x.Brand == car.Brand && car.Price == x.Price && car.Number == x.Number);
+            if (searchCar != null)
+            {
+                return ListOfCar.Remove(searchCar);
+            }
+            return false;
+        }
+        public double CalculateTotalPrice()
+        {
+            double totalPrice = ListOfCar.Sum(x => x.Price);
+            return totalPrice;
+        }
+        public Car GetCarWithHighestPrice()
+        {
+            ListOfCar.OrderByDescending(x => x.Price).FirstOrDefault();
+            return ListOfCar[1];
+        }
+        public Car GetCarWithLowestPrice()
+        {
+            ListOfCar.OrderByDescending(x => x.Price).FirstOrDefault();
+            return ListOfCar[-1];
+        }
+        public void RenameStore(string newName)
+        {
+            this.Name = newName;
+        }
+        public void SellAllCars()
+        {
+            ListOfCar.Clear();
+        }
+
+
+
+    }
+}
