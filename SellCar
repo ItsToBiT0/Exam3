@@ -1,0 +1,9 @@
+public bool SellCar(Car car)
+        {
+            Car searchCar = ListOfCar.FirstOrDefault(x => x.Model == car.Model && x.Brand == car.Brand && car.Price == x.Price && car.Number == x.Number);
+            if (searchCar != null)
+            {
+                return ListOfCar.Remove(searchCar);
+            }
+            return false;
+        }
