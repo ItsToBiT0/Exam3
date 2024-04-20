@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ITCareer_OOP_Exam_1
+{
+    public class Car
+    {
+        private string brand;
+        private string model;
+        private double price;
+
+        public double Price
+        {
+            get { return price; }
+            set 
+            {
+                price = value;
+                if (value < 1000)
+                {
+                    throw new ArgumentException("Invalid car price!");
+                }
+            }
+        }
+        private int number;
+
+
+        public Car(int number, double price)
+        {
+            this.Number = number;
+            this.Price = price;
+        }
+
+        public int Number
+        {
+            get { return number; }
+            set { number = value; }
+        }
+
+        
+
+        public string Model
+        {
+            get { return model; }
+            set { model = value; }
+        }
+
+
+        public string Brand
+        {
+            get { return brand; }
+            set { brand = value; }
+        }
+
+    }
+}
