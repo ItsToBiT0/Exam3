@@ -1,0 +1,13 @@
+public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (ListOfCar.Count >0)
+            {
+                foreach (var car in ListOfCar)
+                {
+                    sb.AppendLine($"Car number {car.Number} costs {car.Price}");
+                }
+                return sb.ToString();
+            }
+            return $"Store {name} has no available cars";
+        }
